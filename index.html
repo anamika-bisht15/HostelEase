@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HostelEase — Student Hostel Management System</title>
+  <meta name="description" content="HostelEase is the official hostel management portal for students. Book rooms, manage your stay, and access all hostel services online."/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23c0392b' width='100' height='100' rx='12'/><text y='.9em' font-size='72' x='50%' text-anchor='middle' fill='white' font-weight='900' font-family='Georgia'>H</text></svg>"/>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-contact">
+      <span>📍 GEHU & GEU</span>
+      <span>📞 +91 98765 43210</span>
+      <span>✉ hostels@university.ac.in</span>
+    </div>
+    <div class="topbar-links">
+      <a href="#">Academic Calendar</a>
+      <a href="#">Campus Map</a>
+      <a href="#">Emergency</a>
+    </div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar" role="navigation" aria-label="Main Navigation">
+  <div class="navbar-inner">
+    <a href="index.html" class="navbar-brand">
+      <div class="brand-icon">HE</div>
+      <div class="brand-text">
+        <span class="brand-name">HostelEase</span>
+        <span class="brand-tagline">Student Hostel Management</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li data-section="hero" class="active"><a href="index.html">Home</a></li>
+      <li data-section="about"><a href="#about">About</a></li>
+      <li>
+        <a href="#rooms">Rooms ▾</a>
+        <div class="nav-dropdown">
+          <a href="pages/rooms.html">All Rooms</a>
+          <a href="pages/rooms.html#boys">Boys Hostel</a>
+          <a href="pages/rooms.html#girls">Girls Hostel</a>
+          <a href="#pricing">Room Pricing</a>
+        </div>
+      </li>
+      <li data-section="amenities"><a href="#amenities">Amenities</a></li>
+      <li data-section="contact"><a href="#contact">Contact</a></li>
+      <li><a href="pages/dashboard.html">Dashboard</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="#" class="btn-nav-outline" onclick="openModal('signin'); return false;">Sign In</a>
+      <a href="#" class="btn-nav-solid" onclick="openModal('signup'); return false;">Register</a>
+    </div>
+  </div>
+</nav>
+
+<!-- NOTICE BAND -->
+<div id="noticeBand" class="notice-band">
+  <div class="notice-inner">
+    <span class="notice-badge">NOTICE</span>
+    <span>Hostel room allotment for Semester 2 (2025–26) is now open. Last date to apply: <strong>April 15, 2025</strong>.</span>
+    <a href="#" onclick="openModal('signup'); return false;">Apply Now →</a>
+    <button id="noticeClose" style="background:none;border:none;cursor:pointer;font-size:18px;color:#3d2800;margin-left:16px;line-height:1;" aria-label="Dismiss">✕</button>
+  </div>
+</div>
+
+<!-- HERO -->
+<section id="hero" class="hero">
+  <div class="hero-pattern"></div>
+  <div class="hero-red-bar"></div>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-eyebrow">Official Hostel Portal — 2025–26</div>
+      <h1 class="hero-title">
+        Student Living,<br>
+        <span class="highlight">Simplified.</span>
+      </h1>
+      <p class="hero-desc">
+        HostelEase is the official online portal for hostel allotment, room management,
+        and student services at our Nadiad and Changa campuses. Apply, track, and manage
+        your accommodation from one place.
+      </p>
+      <div class="hero-cta-group">
+        <a href="#" class="btn-hero-primary" onclick="openModal('signup'); return false;">
+          Apply for Room
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#about" class="btn-hero-secondary">
+          Learn More
+        </a>
+      </div>
+      <div class="hero-stats-row">
+        <div class="hero-stat-item">
+          <div class="num"><span data-count="76">76</span></div>
+          <div class="lbl">Boys' Rooms</div>
+        </div>
+        <div class="hero-stat-item">
+          <div class="num"><span data-count="80">80</span></div>
+          <div class="lbl">Girls' Rooms</div>
+        </div>
+        <div class="hero-stat-item">
+          <div class="num"><span data-count="2">2</span></div>
+          <div class="lbl">Campuses</div>
+        </div>
+        <div class="hero-stat-item">
+          <div class="num"><span data-count="21">21</span></div>
+          <div class="lbl">Staff Members</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- QUICK APPLY CARD -->
+    <div class="hero-card">
+      <div class="hero-card-header">
+        <span class="hero-card-icon">🏠</span>
+        <h3>Quick Room Enquiry</h3>
+      </div>
+      <div class="hero-card-body">
+        <form class="quick-form" onsubmit="event.preventDefault(); openModal('signup');">
+          <div class="form-row">
+            <div class="form-group">
+              <label>First Name</label>
+              <input type="text" placeholder="Arjun" required/>
+            </div>
+            <div class="form-group">
+              <label>Last Name</label>
+              <input type="text" placeholder="Sharma" required/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Student ID / Roll No.</label>
+            <input type="text" placeholder="e.g. CE098" required/>
+          </div>
+          <div class="form-group">
+            <label>Campus</label>
+            <select>
+              <option value="">Select campus...</option>
+              <option>Nadiad (Near DDIT College)</option>
+              <option>Changa (Opp. Charusat University)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Room Type</label>
+            <select>
+              <option value="">Select room type...</option>
+              <option>Standard (Triple Sharing)</option>
+              <option>Deluxe (Double Sharing)</option>
+              <option>Super Deluxe (Single)</option>
+            </select>
+          </div>
+          <button type="submit" class="btn-form-submit">Check Availability →</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img-wrap reveal">
+        <div class="about-img-placeholder">🏛️</div>
+        <div class="about-cert">
+          <div class="big">10<sup style="font-size:18px">+</sup></div>
+          <div class="small">Years of Service</div>
+        </div>
+      </div>
+      <div class="about-content">
+        <div class="section-kicker reveal">About HostelEase</div>
+        <h2 class="section-title reveal reveal-d1">Your Trusted On-Campus<br>Accommodation Partner</h2>
+        <p class="reveal reveal-d2" style="margin-top:14px;">
+          HostelEase manages student accommodation at two prime locations — <strong>Nadiad</strong> (near DDIT College)
+          and <strong>Changa</strong> (opposite Charusat University). We provide a safe, supportive, and fully
+          equipped living environment designed to help students focus on academics and personal growth.
+        </p>
+        <p class="reveal reveal-d2">
+          Our hostels offer structured daily schedules, full-board meal packages, high-speed internet,
+          and round-the-clock security — everything a university student needs under one roof.
+        </p>
+        <ul class="about-features reveal reveal-d3">
+          <li>24/7 WiFi Connectivity</li>
+          <li>Full Meal Package</li>
+          <li>24/7 Security & CCTV</li>
+          <li>Separate Boys & Girls Blocks</li>
+          <li>Warden Support</li>
+          <li>Medical Assistance</li>
+          <li>Laundry Facilities</li>
+          <li>Study Rooms</li>
+        </ul>
+        <div class="room-tabs-wrap reveal reveal-d3" style="margin-top:28px;">
+          <button class="room-tab-btn active" data-tab="superdelux" onclick="switchAboutTab('superdelux')">Super Deluxe</button>
+          <button class="room-tab-btn" data-tab="delux" onclick="switchAboutTab('delux')">Deluxe</button>
+          <button class="room-tab-btn" data-tab="standard" onclick="switchAboutTab('standard')">Standard</button>
+        </div>
+        <div class="room-tab-panel active" id="rtab-superdelux">
+          <p style="font-size:14px;color:#555;line-height:1.7;">Single-occupancy room with premium air conditioning, dedicated mini fridge, a large study desk with lamp, and storage cupboard. Includes fiber WiFi and attached bathroom. Ideal for students who value privacy and focus.</p>
+        </div>
+        <div class="room-tab-panel" id="rtab-delux">
+          <p style="font-size:14px;color:#555;line-height:1.7;">Double-sharing room with individual study tables, personal storage cupboards, AC, mini fridge, and fiber WiFi. Spacious layout with shared attached bathroom. Balances comfort with affordability.</p>
+        </div>
+        <div class="room-tab-panel" id="rtab-standard">
+          <p style="font-size:14px;color:#555;line-height:1.7;">Triple-sharing room with dedicated study tables and storage for each student, 24/7 WiFi, and common bathroom access. The most budget-friendly option without compromising on essentials.</p>
+        </div>
+        <div class="reveal reveal-d4" style="margin-top:24px;">
+          <a href="#rooms" class="btn-outline-navy">View All Rooms →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div id="stats-section" class="stats-bar">
+  <div class="stats-bar-grid">
+    <div class="stat-box">
+      <span class="stat-number"><span data-count="76">76</span></span>
+      <p class="stat-desc">Boys' Rooms</p>
+    </div>
+    <div class="stat-box">
+      <span class="stat-number"><span data-count="80">80</span></span>
+      <p class="stat-desc">Girls' Rooms</p>
+    </div>
+    <div class="stat-box">
+      <span class="stat-number"><span data-count="21">21</span></span>
+      <p class="stat-desc">Dedicated Staff</p>
+    </div>
+    <div class="stat-box">
+      <span class="stat-number"><span data-count="500">500</span><sup>+</sup></span>
+      <p class="stat-desc">Students Housed</p>
+    </div>
+  </div>
+</div>
+
+<!-- ROOMS -->
+<section id="rooms" class="section section-alt">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-kicker">Our Rooms</div>
+      <h2 class="section-title">Choose Your Accommodation</h2>
+      <p class="section-subtitle">Three room categories available separately for boys and girls, with all essential amenities included.</p>
+    </div>
+    <div class="rooms-grid">
+      <div class="room-card reveal">
+        <div class="room-card-img" style="background: linear-gradient(135deg, #1a2a4a 0%, #243558 100%); display:flex; align-items:center; justify-content:center; font-size:72px;">🛏️
+          <span class="room-card-badge red">Super Deluxe</span>
+        </div>
+        <div class="room-card-body">
+          <h3 class="room-card-title">Super Deluxe Suite</h3>
+          <p class="room-card-sub">Single occupancy · Fully air-conditioned</p>
+          <div class="room-amenity-pills">
+            <span class="pill">🌡️ AC</span>
+            <span class="pill">🧊 Fridge</span>
+            <span class="pill">📶 WiFi</span>
+            <span class="pill">🚿 Attached Bath</span>
+            <span class="pill">👤 1 Person</span>
+          </div>
+          <div class="room-card-footer">
+            <div>
+              <div class="room-price">₹12,000 <span>/ month</span></div>
+              <div style="font-size:12px;color:#27ae60;margin-top:2px;font-weight:600;">● Available — Boys & Girls</div>
+            </div>
+            <a href="#" class="btn-book" onclick="openModal('signup'); return false;">Book Now</a>
+          </div>
+        </div>
+      </div>
+      <div class="room-card reveal reveal-d1">
+        <div class="room-card-img" style="background: linear-gradient(135deg, #1a2a4a 0%, #c0392b22 100%); display:flex; align-items:center; justify-content:center; font-size:72px;">🛏️
+          <span class="room-card-badge">Deluxe</span>
+        </div>
+        <div class="room-card-body">
+          <h3 class="room-card-title">Deluxe Double Room</h3>
+          <p class="room-card-sub">Double occupancy · Spacious layout</p>
+          <div class="room-amenity-pills">
+            <span class="pill">🌡️ AC</span>
+            <span class="pill">🧊 Fridge</span>
+            <span class="pill">📶 WiFi</span>
+            <span class="pill">📚 Study Table</span>
+            <span class="pill">👥 2 Persons</span>
+          </div>
+          <div class="room-card-footer">
+            <div>
+              <div class="room-price">₹9,000 <span>/ month</span></div>
+              <div style="font-size:12px;color:#27ae60;margin-top:2px;font-weight:600;">● Available — Boys & Girls</div>
+            </div>
+            <a href="#" class="btn-book" onclick="openModal('signup'); return false;">Book Now</a>
+          </div>
+        </div>
+      </div>
+      <div class="room-card reveal reveal-d2">
+        <div class="room-card-img" style="background: linear-gradient(135deg, #243558 0%, #1a2a4a 100%); display:flex; align-items:center; justify-content:center; font-size:72px;">🛏️
+          <span class="room-card-badge">Standard</span>
+        </div>
+        <div class="room-card-body">
+          <h3 class="room-card-title">Standard Triple Room</h3>
+          <p class="room-card-sub">Triple occupancy · Best value</p>
+          <div class="room-amenity-pills">
+            <span class="pill">📶 WiFi</span>
+            <span class="pill">📚 Study Table</span>
+            <span class="pill">🗄️ Storage</span>
+            <span class="pill">👥 3 Persons</span>
+          </div>
+          <div class="room-card-footer">
+            <div>
+              <div class="room-price">₹6,500 <span>/ month</span></div>
+              <div style="font-size:12px;color:#27ae60;margin-top:2px;font-weight:600;">● Available — Boys & Girls</div>
+            </div>
+            <a href="#" class="btn-book" onclick="openModal('signup'); return false;">Book Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:36px;" class="reveal">
+      <a href="pages/rooms.html" class="btn-outline-navy">View Full Room Directory →</a>
+    </div>
+  </div>
+</section>
+
+<!-- AMENITIES -->
+<section id="amenities" class="section">
+  <div class="container">
+    <div class="section-header centered reveal">
+      <div class="section-kicker">Facilities & Amenities</div>
+      <h2 class="section-title">Everything Included</h2>
+      <p class="section-subtitle">All rooms come with core facilities. No hidden charges, no surprise bills.</p>
+    </div>
+    <div class="amenities-grid">
+      <div class="amenity-card reveal">
+        <div class="amenity-icon-wrap">📶</div>
+        <h3>High-Speed WiFi</h3>
+        <p>Fiber internet across all floors, 24/7. Supports video calls, e-learning platforms, and research tools.</p>
+      </div>
+      <div class="amenity-card reveal reveal-d1">
+        <div class="amenity-icon-wrap">🍽️</div>
+        <h3>Meal Service</h3>
+        <p>Full-board meals — breakfast, lunch, and dinner — prepared in a hygienic, FSSAI-compliant kitchen.</p>
+      </div>
+      <div class="amenity-card reveal reveal-d2">
+        <div class="amenity-icon-wrap">🔒</div>
+        <h3>24/7 Security</h3>
+        <p>CCTV surveillance on all floors and entry points. Trained security staff present round the clock.</p>
+      </div>
+      <div class="amenity-card reveal reveal-d3">
+        <div class="amenity-icon-wrap">🧺</div>
+        <h3>Laundry</h3>
+        <p>Washing machines available on each floor. Separate facilities for boys and girls.</p>
+      </div>
+      <div class="amenity-card reveal">
+        <div class="amenity-icon-wrap">📚</div>
+        <h3>Study Rooms</h3>
+        <p>Dedicated quiet study rooms with proper lighting, ergonomic seating, and whiteboards.</p>
+      </div>
+      <div class="amenity-card reveal reveal-d1">
+        <div class="amenity-icon-wrap">⚕️</div>
+        <h3>Medical Aid</h3>
+        <p>First-aid station at warden's office. On-call medical professional available for emergencies.</p>
+      </div>
+      <div class="amenity-card reveal reveal-d2">
+        <div class="amenity-icon-wrap">🅿️</div>
+        <h3>Parking</h3>
+        <p>Secure covered parking for bicycles and two-wheelers within the hostel compound.</p>
+      </div>
+      <div class="amenity-card reveal reveal-d3">
+        <div class="amenity-icon-wrap">🧹</div>
+        <h3>Housekeeping</h3>
+        <p>Daily room cleaning and common area maintenance by trained housekeeping staff.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="section section-alt">
+  <div class="container">
+    <div class="section-header centered reveal">
+      <div class="section-kicker">Fee Structure</div>
+      <h2 class="section-title">Transparent Room Pricing</h2>
+      <p class="section-subtitle">All rates are per student per month and include meals, WiFi, security, and housekeeping.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="pricing-card reveal">
+        <div class="pricing-plan-name">Standard Plan</div>
+        <div class="pricing-room-name">Triple Sharing</div>
+        <p class="pricing-occupancy">3 students per room</p>
+        <div class="pricing-amount-row">
+          <span class="pricing-currency">₹</span>
+          <span class="pricing-amount">6,500</span>
+          <span class="pricing-period">/ month</span>
+        </div>
+        <ul class="pricing-features-list">
+          <li><span class="check">✓</span> Triple occupancy room</li>
+          <li><span class="check">✓</span> 24/7 WiFi access</li>
+          <li><span class="check">✓</span> Breakfast + Lunch + Dinner</li>
+          <li><span class="check">✓</span> Individual study table</li>
+          <li><span class="check">✓</span> Personal storage cupboard</li>
+          <li><span class="check">✓</span> Daily housekeeping</li>
+          <li><span class="check">✓</span> 24/7 security</li>
+        </ul>
+        <button class="pricing-cta pricing-cta-outline" onclick="openModal('signup')">Apply for Room</button>
+      </div>
+      <div class="pricing-card featured reveal reveal-d1">
+        <div class="pricing-plan-name">Deluxe Plan</div>
+        <div class="pricing-room-name">Double Sharing</div>
+        <p class="pricing-occupancy">2 students per room</p>
+        <div class="pricing-amount-row">
+          <span class="pricing-currency">₹</span>
+          <span class="pricing-amount">9,000</span>
+          <span class="pricing-period">/ month</span>
+        </div>
+        <ul class="pricing-features-list">
+          <li><span class="check">✓</span> Double occupancy room</li>
+          <li><span class="check">✓</span> Fiber WiFi (100 Mbps)</li>
+          <li><span class="check">✓</span> Breakfast + Lunch + Dinner</li>
+          <li><span class="check">✓</span> Air conditioning</li>
+          <li><span class="check">✓</span> Mini refrigerator</li>
+          <li><span class="check">✓</span> Attached bathroom</li>
+          <li><span class="check">✓</span> Daily housekeeping</li>
+        </ul>
+        <button class="pricing-cta pricing-cta-solid" onclick="openModal('signup')">Apply for Room</button>
+      </div>
+      <div class="pricing-card reveal reveal-d2">
+        <div class="pricing-plan-name">Super Deluxe Plan</div>
+        <div class="pricing-room-name">Single Suite</div>
+        <p class="pricing-occupancy">1 student — full privacy</p>
+        <div class="pricing-amount-row">
+          <span class="pricing-currency">₹</span>
+          <span class="pricing-amount">12,000</span>
+          <span class="pricing-period">/ month</span>
+        </div>
+        <ul class="pricing-features-list">
+          <li><span class="check">✓</span> Private single room</li>
+          <li><span class="check">✓</span> Fiber WiFi (100 Mbps)</li>
+          <li><span class="check">✓</span> Breakfast + Lunch + Dinner</li>
+          <li><span class="check">✓</span> Premium air conditioning</li>
+          <li><span class="check">✓</span> Full-size refrigerator</li>
+          <li><span class="check">✓</span> Attached bath + study alcove</li>
+          <li><span class="check">✓</span> Priority housekeeping</li>
+        </ul>
+        <button class="pricing-cta pricing-cta-outline" onclick="openModal('signup')">Apply for Room</button>
+      </div>
+    </div>
+    <div class="alert alert-info reveal" style="margin-top:32px; max-width:700px; margin-left:auto; margin-right:auto;">
+      <span>ℹ️</span>
+      <span>Fee waivers and scholarships may be available for eligible students. Contact the Hostel Welfare Officer for details.</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section section-dark">
+  <div class="container">
+    <div class="contact-grid">
+      <div>
+        <div class="section-kicker reveal">Get in Touch</div>
+        <h2 class="section-title reveal reveal-d1">Contact the<br>Hostel Office</h2>
+        <p class="section-subtitle reveal reveal-d2" style="max-width:420px;margin-top:14px;">
+          For room availability, admission enquiries, or any hostel-related concerns, reach out to our office directly.
+        </p>
+        <div style="margin-top:36px;">
+          <div class="contact-info-block reveal reveal-d2">
+            <div class="contact-icon-box">📍</div>
+            <div class="contact-info-text">
+              <h4>Campus Locations</h4>
+              <p>Nadiad — Near DDIT College<br>Changa — Opp. Charusat University</p>
+            </div>
+          </div>
+          <div class="contact-info-block reveal reveal-d3">
+            <div class="contact-icon-box">📞</div>
+            <div class="contact-info-text">
+              <h4>Phone (9 AM – 6 PM)</h4>
+              <p>+91 98765 43210</p>
+            </div>
+          </div>
+          <div class="contact-info-block reveal reveal-d3">
+            <div class="contact-icon-box">✉️</div>
+            <div class="contact-info-text">
+              <h4>Email</h4>
+              <p>hostels@university.ac.in</p>
+            </div>
+          </div>
+          <div class="contact-info-block reveal reveal-d4">
+            <div class="contact-icon-box">⏰</div>
+            <div class="contact-info-text">
+              <h4>Office Hours</h4>
+              <p>Mon–Sat: 9:00 AM – 6:00 PM<br>Sunday: 10:00 AM – 1:00 PM</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form-box reveal reveal-d1">
+        <h3 class="contact-form-title">Send an Enquiry</h3>
+        <p class="contact-form-sub">We typically respond within 1 working day.</p>
+        <form>
+          <div class="form-grid">
+            <div class="form-group">
+              <label>First Name</label>
+              <input type="text" placeholder="Arjun" required/>
+            </div>
+            <div class="form-group">
+              <label>Last Name</label>
+              <input type="text" placeholder="Sharma" required/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" placeholder="arjun@student.ac.in" required/>
+          </div>
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" placeholder="+91 98765 43210"/>
+          </div>
+          <div class="form-group">
+            <label>Room Interest</label>
+            <select>
+              <option value="">Select type...</option>
+              <option>Standard Triple Room</option>
+              <option>Deluxe Double Room</option>
+              <option>Super Deluxe Single Suite</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Message</label>
+            <textarea placeholder="Please describe your requirements or questions..."></textarea>
+          </div>
+          <button type="submit" class="btn-contact-submit">Submit Enquiry →</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-about">
+        <div class="navbar-brand" style="display:flex;align-items:center;gap:12px;margin-bottom:4px;">
+          <div class="brand-icon" style="width:38px;height:38px;font-size:18px;">HE</div>
+          <div class="brand-text">
+            <span class="brand-name">HostelEase</span>
+            <span class="brand-tagline">Student Hostel Management</span>
+          </div>
+        </div>
+        <p>Official hostel management portal serving students at Nadiad and Changa campuses. Providing safe, comfortable, and affordable student accommodation since 2015.</p>
+        <div class="footer-socials">
+          <a href="#" class="footer-social-link" title="Twitter">𝕏</a>
+          <a href="#" class="footer-social-link" title="LinkedIn">in</a>
+          <a href="#" class="footer-social-link" title="Facebook">f</a>
+          <a href="#" class="footer-social-link" title="Instagram">📸</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#rooms">Rooms</a></li>
+          <li><a href="#amenities">Amenities</a></li>
+          <li><a href="#pricing">Fee Structure</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Hostel Info</h4>
+        <ul>
+          <li><a href="#">Boys Hostel</a></li>
+          <li><a href="#">Girls Hostel</a></li>
+          <li><a href="#">Room Allotment Process</a></li>
+          <li><a href="#">Rules & Regulations</a></li>
+          <li><a href="#">Hostel Committee</a></li>
+          <li><a href="#">Emergency Contacts</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Student Portal</h4>
+        <ul>
+          <li><a href="pages/dashboard.html">My Dashboard</a></li>
+          <li><a href="#" onclick="openModal('signin'); return false;">Sign In</a></li>
+          <li><a href="#" onclick="openModal('signup'); return false;">Register</a></li>
+          <li><a href="#">Fee Payment</a></li>
+          <li><a href="#">Complaint Portal</a></li>
+          <li><a href="#">Downloads / Forms</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 HostelEase — Student Hostel Management System. All rights reserved.</span>
+    <span>Designed for students · <a href="#">Privacy Policy</a> · <a href="#">Terms of Use</a></span>
+  </div>
+</footer>
+
+<!-- AUTH MODAL -->
+<div class="modal-backdrop" id="authModal">
+  <div class="modal-box" role="dialog" aria-modal="true">
+    <div class="modal-header">
+      <div class="modal-header-text">
+        <h2 id="modalTitle">Student Sign In</h2>
+        <p id="modalSub">Access your hostel account</p>
+      </div>
+      <button class="modal-close-btn" onclick="closeModal()" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-tabs-strip">
+      <button class="modal-tab active" data-tab="signin" onclick="switchModalTab('signin')">Sign In</button>
+      <button class="modal-tab" data-tab="signup" onclick="switchModalTab('signup')">Register</button>
+    </div>
+    <div class="modal-body">
+      <!-- SIGN IN -->
+      <div class="modal-panel active" id="modal-signin">
+        <form onsubmit="return false;">
+          <div class="form-group">
+            <label>Student Email / ID</label>
+            <input type="text" placeholder="rollno@university.ac.in" required/>
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" placeholder="••••••••" required/>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+            <label style="display:flex;align-items:center;gap:6px;font-size:13px;color:#666;cursor:pointer;">
+              <input type="checkbox" style="width:auto;padding:0;background:none;border-color:#ccc;"/> Remember me
+            </label>
+            <a href="#" style="font-size:13px;color:var(--red);text-decoration:none;">Forgot password?</a>
+          </div>
+          <button type="submit" class="modal-submit-btn">Sign In to Portal</button>
+        </form>
+        <p class="modal-toggle-text">New student? <a onclick="switchModalTab('signup')">Register here</a></p>
+      </div>
+      <!-- REGISTER -->
+      <div class="modal-panel" id="modal-signup">
+        <form onsubmit="return false;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+            <div class="form-group">
+              <label>First Name</label>
+              <input type="text" placeholder="Arjun" required/>
+            </div>
+            <div class="form-group">
+              <label>Last Name</label>
+              <input type="text" placeholder="Sharma" required/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Student Roll No.</label>
+            <input type="text" placeholder="e.g. CE098" required/>
+          </div>
+          <div class="form-group">
+            <label>University Email</label>
+            <input type="email" placeholder="rollno@university.ac.in" required/>
+          </div>
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" placeholder="+91 98765 43210" required/>
+          </div>
+          <div class="form-group">
+            <label>Campus</label>
+            <select>
+              <option value="">Select campus...</option>
+              <option>Nadiad (Near DDIT College)</option>
+              <option>Changa (Opp. Charusat University)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Preferred Room Type</label>
+            <select>
+              <option value="">Select room type...</option>
+              <option>Standard (Triple Sharing)</option>
+              <option>Deluxe (Double Sharing)</option>
+              <option>Super Deluxe (Single)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Set Password</label>
+            <input type="password" placeholder="Min 8 characters" required/>
+          </div>
+          <button type="submit" class="modal-submit-btn">Create Student Account</button>
+        </form>
+        <p class="modal-toggle-text">Already registered? <a onclick="switchModalTab('signin')">Sign in</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
